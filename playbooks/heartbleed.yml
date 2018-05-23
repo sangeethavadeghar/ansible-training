@@ -1,0 +1,31 @@
+# The following playbook will patch the HeartBleed vulnerability. At the time, I also noticed that the servers needed an updated version of OpenSSH. The below example updates both Debian and RedHat linux variants.
+---
+- hosts: all
+  gather_facts: yes
+#  become_user: craun
+  serial: "25%"
+  become: True
+  tasks:
+    - name: Update OpenSSL and OpenSSH (Debian)
+      apt: name={{ item }}
+           state=latest
+           update_cache=yes
+      with_items:
+        - openssl
+        - openssh-clients
+        - openssh-server
+      when: ansible_os_family == "Debian"
+
+    - name: Update OpenSSL and OpenSSH (RedHat)
+      yum: name={{ item }}
+           state=latest
+           update_cache=yes
+      with_items:
+        - openssl
+        - openssh-clients
+        - openssh-server
+      when: ansible_os_family == "RedHat"
+
+#  post_tasks:
+#    - name: Reboot servers
+#      command: reboot

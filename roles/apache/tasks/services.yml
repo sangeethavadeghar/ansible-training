@@ -1,0 +1,3 @@
+---
+ - name: Start and Enable Apache Web Server
+   service: name={{ package }} state=started enabled=yes

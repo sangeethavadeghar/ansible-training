@@ -1,0 +1,15 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+   vars:
+     package: ['httpd', 'elinks', 'git']
+     filenames: ['abc.txt', 'xyz.txt', 'ravi.txt']
+
+   tasks:
+     - name: To install {{ package }} web server
+       yum: name={{ item }} state=installed
+       with_items: "{{ package }}"
+
+     - name: To create 3 files with diff file names
+       file: path=/opt/{{ item }} state=touch mode=0755
+       with_items: "{{ filenames }}"

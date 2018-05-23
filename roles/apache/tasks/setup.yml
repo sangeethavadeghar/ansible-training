@@ -1,0 +1,12 @@
+---
+ - name: Create a group in ur Apache Server
+   group: name=apache state=present
+
+ - name: Create a user in ur Apache Server
+   user: name=apacheadmin groups=apache shell=/bin/bash uid=2000
+
+ - name: Create a directory called apache_logs in /opt
+   file: path={{ log_dir }} state=directory owner=apacheadmin group=apache mode=0744
+
+ - name: Create a empty file for the apache logging
+   file: path={{ log_dir }}/apache.log state=touch owner=apacheadmin group=apache mode=0744

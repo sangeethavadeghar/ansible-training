@@ -1,0 +1,11 @@
+---
+
+# To include the install.yml files for the Installation part
+ - import_tasks: install.yml
+
+# To include the services.yml for the start and enable of apache
+ - import_tasks: services.yml
+
+ - import_tasks: setup.yml
+
+ - import_tasks: configure.yml

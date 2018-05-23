@@ -1,0 +1,19 @@
+#The following playbook will patch the bash vulnerability in less than 10 minutes. The below example updates both Debian and Red Hat Linux variants.
+---
+- hosts: all
+  gather_facts: yes
+#  become_user: craun
+  serial: "50%"
+  become: True
+  tasks:
+    - name: Update Shellshock (Debian)
+      apt: name=bash
+           state=latest
+           update_cache=yes
+      when: ansible_os_family == "Debian"
+
+    - name: Update Shellshock (RedHat)
+      yum: name=bash
+           state=latest
+           update_cache=yes
+      when: ansible_os_family == "RedHat"

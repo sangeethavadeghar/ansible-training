@@ -1,0 +1,16 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+
+   tasks:
+     - name: To create a folder named abc
+       file: path=/opt/abc state=directory owner=ec2-user group=root mode=0755
+
+     - name: To install wget in the remote
+       yum: name=wget state=installed
+
+     - name: To copy a file from ansible server to all remote servers
+       copy: src=/etc/ansible/ansible.cfg dest=/opt/ansible.cfg
+
+     - name: To restart a service
+       service: name=crond state=running enabled=yes

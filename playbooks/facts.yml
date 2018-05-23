@@ -1,0 +1,16 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+   gather_facts: True
+
+   tasks:
+     - name: To install Java JDK
+       yum: name=java-1.8.0-openjdk-devel state=installed
+
+     - name: To start Apache Tomcat
+       command: cat /etc/hosts
+       register: startup_output
+
+     - debug: msg="{{ startup_output.stdout_lines }}"
+
+     - debug: var=ansible_architecture

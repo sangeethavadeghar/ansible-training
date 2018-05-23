@@ -1,0 +1,5 @@
+---
+ - name: This playbook will invoke the Apache role from the /opt/apache directory
+   hosts: webservers
+   roles:
+     - apache

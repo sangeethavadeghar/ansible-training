@@ -1,0 +1,7 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+
+   tasks:
+     - name: To install {{ package }} web server
+       yum: name={{ package }} state=installed

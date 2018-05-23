@@ -1,0 +1,10 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+   gather_facts: True
+
+   tasks:
+
+     - set_fact: goutham="Hello Ansible!!"
+
+     - debug: var=goutham

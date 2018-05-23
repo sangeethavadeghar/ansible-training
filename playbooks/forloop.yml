@@ -1,0 +1,17 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+
+   tasks:
+     - name: To install some packages
+       yum: name={{ item }} state=installed
+       with_items:
+         - vim
+         - elinks
+         - httpd
+
+     - name: To create 3 files with diff file names
+       file: path=/opt/{{ item }} state=touch mode=0755
+       with_items:
+         - abc.txt
+         - xyz.txt

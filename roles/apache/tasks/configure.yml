@@ -1,0 +1,8 @@
+---
+ - name: To copy the source code files from tha apache playbook to the remote servers
+   copy: src=files/index.html dest=/var/www/html/index.html
+   notify: restart apache
+
+ - name: To copy the httpd.conf files from Apache playbook to remote servers using the variables
+   template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+   notify: restart apache

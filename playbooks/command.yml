@@ -1,0 +1,18 @@
+---
+ - name: This play is a basic appserverworld execution
+   hosts: appservers
+
+   tasks:
+     - name: To download a fle from remote location
+       get_url:
+         url: http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.0.52/bin/apache-tomcat-8.0.52.tar.gz
+         dest: /opt/apache-tomcat-8.0.52.tar.gz
+
+     - name: To install Java JDK
+       yum: name=java-1.8.0-openjdk-devel state=installed
+
+     - name: To start Apache Tomcat
+       command: cat /etc/hosts
+       register: startup_output
+
+     - debug: var=startup_output

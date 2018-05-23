@@ -1,0 +1,4 @@
+---
+# defaults file for apache
+package: httpd
+log_dir: /opt/apache_log
