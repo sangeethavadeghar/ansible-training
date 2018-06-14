@@ -19,7 +19,7 @@
        register: dir_exist
 
      - name: This task includes the tasks which will be executed only on the servers which have tvmscanr user, gtvmscanr group and /home/tvmscanr directory
-       include_tasks: includedtasks.yml
+       include_tasks: code.yml
        when:
          - user_exist.stdout == "0"
          - group_exist.stdout == "0"
